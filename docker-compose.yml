@@ -23,3 +23,28 @@ services:
       KAFKA_JMX_PORT: 9991
     ports:
       - 9092:9092
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "8080:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: "local-kafka"
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: "kafka:29092"
+      KAFKA_CLUSTERS_0_ZOOKEEPER: "zookeeper:2181"
+      KAFKA_CLUSTERS_0_JMX_PORT: "9991"
+
+  nestjs-graphql:
+    build:
+      context: ./graphql-api
+      dockerfile: Dockerfile
+
+  nestjs-antifraud:
+    build:
+      context: ./validate-transaction
+      dockerfile: Dockerfile
+
+  nestjs-transactions:
+    build:
+      context: ./transaction-api
+      dockerfile: Dockerfile
