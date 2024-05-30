@@ -1,8 +1,8 @@
 {
   "name": "graphql-api",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Graphql server",
+  "author": "Angello Pareja",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -17,14 +17,34 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm": "ts-node ./node_modules/typeorm/cli",
+    "typeorm:generate-migrations": "npm run typeorm -- -d ./ormconfig.ts migration:generate ./migrations/init",
+    "typeorm:run-migrations": "npm run typeorm migration:run -- -d ./ormconfig.ts",
+    "typeorm:create-migrations": "npm run typeorm -- migration:create ./migrations/init",
+    "typeorm:revert-migrations": "npm run typeorm -- -d ./ormconfig.ts migration:revert"
   },
   "dependencies": {
+    "@apollo/server": "^4.10.4",
+    "@nestjs/apollo": "^12.1.0",
     "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^3.2.2",
     "@nestjs/core": "^10.0.0",
+    "@nestjs/graphql": "^12.1.1",
+    "@nestjs/mapped-types": "^2.0.5",
+    "@nestjs/microservices": "^10.3.8",
     "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/typeorm": "^10.0.2",
+    "bcrypt": "^5.1.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "graphql": "^16.8.1",
+    "kafkajs": "^2.2.4",
+    "pg": "^8.11.5",
     "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.1"
+    "rimraf": "^5.0.7",
+    "rxjs": "^7.8.1",
+    "typeorm": "^0.3.20"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
