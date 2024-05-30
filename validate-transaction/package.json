@@ -1,8 +1,8 @@
 {
   "name": "validate-transaction",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "0.0.2",
+  "description": "Validate microservice for transaction",
+  "author": "Angello Luis Pareja Sarmiento",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

@@ -18,13 +18,9 @@ export class HttpExceptionFilter extends BaseExceptionFilter {
       exception?.response?.error ||
       exception?.message;
     const code = 'HttpException';
-    /*
-    Logger.error(
-      message,
-      (exception as any).stack,
-      `${request.method} ${request.url}`,
-    );*/
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
+
+    console.log('status', status)
 
     switch (exception.constructor) {
       case HttpException:
