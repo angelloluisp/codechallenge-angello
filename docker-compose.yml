@@ -6,7 +6,7 @@ services:
       - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_PASSWORD=mysql
   zookeeper:
     image: confluentinc/cp-zookeeper:5.5.3
     environment:
@@ -38,13 +38,42 @@ services:
     build:
       context: ./graphql-api
       dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    ports:
+      - "5001:5001"
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysql
+      - POSTGRES_DATABASE=postgres
+      - PORT=5001
+    command: sh -c "npm run typeorm:generate-migrations || true && npm run typeorm:run-migrations || true && npm run start:prod"
 
   nestjs-antifraud:
     build:
       context: ./validate-transaction
       dockerfile: Dockerfile
+    depends_on:
+      - kafka
+    environment:
+      - KAFKA_BROKER=kafka:29092
+      - KAFKA_GROUP_ID=antifraud-yape
+      - KAFKA_CLIENT_ID=antifraud
 
   nestjs-transactions:
     build:
       context: ./transaction-api
       dockerfile: Dockerfile
+    depends_on:
+      - kafka
+      - nestjs-graphql
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - GRAPHQL_SERVER=http://nestjs-graphql:5001/graphql
+      - KAFKA_BROKER=kafka:29092
+      - KAFKA_GROUP_ID=transaction-yape
+      - KAFKA_CLIENT_ID=transaction
