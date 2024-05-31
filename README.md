@@ -30,6 +30,65 @@ Every transaction with a value greater than 1000 should be rejected.
     Transaction -- Update transaction Status event--> transactionDatabase[(Database)]
 ```
 
+## How to run project?
+
+### With docker-compose:
+
+```bash
+docker-compose up -d
+```
+
+### Individual services:
+
+
+```bash
+docker-compose up -d
+cd anti-fraud
+npm run start:dev
+cd graphql
+npm run start:dev
+cd transactions
+npm run start:dev
+```
+
+# Arquitecture
+
+![Descripción de la imagen](img/arquitecture.png)
+
+## How test?
+
+Let's use curl for this or use postman collection with name is Yape
+
+**for an approved transaction:**
+
+```bash
+curl --location 'http://localhost:5003/transactions' \
+--header 'Content-Type: application/json' \
+--data '{
+    "accountExternalIdDebit": "550e8400-e29b-41d4-a716-446655440000",
+    "accountExternalIdCredit": "550e8400-e29b-41d4-a716-446655440000",
+    "tranferTypeId": 1,
+    "value": 500
+}'
+```
+
+![Descripción de la imagen](img/approved.png)
+
+**for an rejected transaction:**
+
+```bash
+curl --location 'http://localhost:5003/transactions' \
+--header 'Content-Type: application/json' \
+--data '{
+    "accountExternalIdDebit": "IdDebit",
+    "accountExternalIdCredit": "IdCredit",
+    "tranferTypeId": 1,
+    "value": 1001
+}'
+```
+
+![Descripción de la imagen](img/rejected.png)
+
 # Tech Stack
 
 <ol>

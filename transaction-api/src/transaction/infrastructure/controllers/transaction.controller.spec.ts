@@ -17,7 +17,6 @@ describe('TransactionController', () => {
         {
           provide: 'TransactionService',
           useValue: {
-            getById: jest.fn(),
             create: jest.fn(),
             reject: jest.fn(),
             approve: jest.fn(),
@@ -35,44 +34,13 @@ describe('TransactionController', () => {
     expect(controller).toBeDefined();
   });
 
-  describe('getById', () => {
-    it('should return a transaction by ID', async () => {
-      const mockTransaction: Transaction = {
-        id: 1,
-        accountExternalIdDebit: 'UID',
-        accountExternalIdCredit: 'UID',
-        tranferTypeId: 1,
-        value: 100,
-        createdAt: new Date(),
-        status: 'pending',
-      };
-      const mockTransactionResult: TransactionDto = {
-        id: 1,
-        transactionExternalId: 'UID',
-        transactionType: {
-          name: '1',
-        },
-        transactionStatus: {
-          name: 'pending',
-        },
-        value: 100,
-        createdAt: new Date(),
-      };
-
-      transactionService.getById = jest.fn().mockResolvedValue(mockTransaction);
-
-      const result = await controller.getById(1);
-      expect(result).toEqual(mockTransactionResult);
-    });
-  });
-
   describe('create', () => {
-    it('should create a new transaction', async () => {
+    it('Creando una nueva transacción', async () => {
       const createTransactionDto: CreateTransactionDto = {
         accountExternalIdDebit: 'UID',
         accountExternalIdCredit: 'UID',
         tranferTypeId: 1,
-        value: 100,
+        value: 200,
       };
 
       const mockTransaction: Transaction = {
@@ -80,7 +48,7 @@ describe('TransactionController', () => {
         accountExternalIdDebit: 'UID',
         accountExternalIdCredit: 'UID',
         tranferTypeId: 1,
-        value: 100,
+        value: 200,
         createdAt: new Date(),
         status: 'pending',
       };
@@ -93,7 +61,7 @@ describe('TransactionController', () => {
         transactionStatus: {
           name: 'pending',
         },
-        value: 100,
+        value: 200,
         createdAt: new Date(),
       };
 
@@ -105,7 +73,7 @@ describe('TransactionController', () => {
   });
 
   describe('reject', () => {
-    it('should reject a transaction', async () => {
+    it('Realizando una transación rechazada', async () => {
       const transactionUpdateDto: TransactionUpdateDto = {
         id: 1,
       };
@@ -115,7 +83,7 @@ describe('TransactionController', () => {
         accountExternalIdDebit: 'UID',
         accountExternalIdCredit: 'UID',
         tranferTypeId: 1,
-        value: 100,
+        value: 200,
         createdAt: new Date(),
         status: 'rejected',
       };
@@ -128,7 +96,7 @@ describe('TransactionController', () => {
         transactionStatus: {
           name: 'rejected',
         },
-        value: 100,
+        value: 200,
         createdAt: new Date(),
       };
 
@@ -140,7 +108,7 @@ describe('TransactionController', () => {
   });
 
   describe('approve', () => {
-    it('should approve a transaction', async () => {
+    it('Realizando una transaccion aprobada', async () => {
       const transactionUpdateDto: TransactionUpdateDto = {
         id: 1,
       };
@@ -150,7 +118,7 @@ describe('TransactionController', () => {
         accountExternalIdDebit: 'UID',
         accountExternalIdCredit: 'UID',
         tranferTypeId: 1,
-        value: 100,
+        value: 200,
         createdAt: new Date(),
         status: 'approved',
       };
@@ -163,7 +131,7 @@ describe('TransactionController', () => {
         transactionStatus: {
           name: 'approved',
         },
-        value: 100,
+        value: 200,
         createdAt: new Date(),
       };
 

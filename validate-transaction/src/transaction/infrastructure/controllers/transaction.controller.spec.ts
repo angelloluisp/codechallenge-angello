@@ -30,21 +30,18 @@ describe('TransactionController', () => {
   });
 
   it('should call service.check and return true', async () => {
-    // Arrange
     const transactionData: Transaction = {
-      accountExternalIdDebit: 'ASD',
-      accountExternalIdCredit: 'ASD',
+      accountExternalIdDebit: '5b766fd7-fd28-4e6d-9661-cdb07992c6e2',
+      accountExternalIdCredit: '5b766fd7-fd28-4e6d-9661-cdb07992c6e2',
       tranferTypeId: 1,
-      value: 500,
+      value: 650,
     };
     jest
       .spyOn(mockTransactionService, 'check')
       .mockReturnValueOnce(Promise.resolve(true));
 
-    // Act
     const result = await controller.created(transactionData);
 
-    // Assert
     expect(mockTransactionService.check).toHaveBeenCalledWith(transactionData);
     expect(result).toBe(true);
   });

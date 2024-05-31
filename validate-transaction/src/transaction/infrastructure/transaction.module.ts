@@ -1,4 +1,3 @@
-// Se ubica en infraestructura porque tiene intereacción con la base de datos
 import { Global, Module, Provider } from '@nestjs/common';
 import { TransactionServiceImpl } from '../application/services/transaction.service';
 import { TransactionController } from './controllers/transaction.controller';

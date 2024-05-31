@@ -35,7 +35,7 @@ export class TransactionRepositoryImpl
     const data = await this.repository.findOneBy({ id });
     console.log(data);
     if (!data) {
-      throw new Error('No existe el recurso');
+      throw new Error('Transaction Repository getById error');
     }
     return data;
   }

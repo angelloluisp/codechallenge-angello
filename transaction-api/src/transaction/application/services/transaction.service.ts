@@ -12,7 +12,9 @@ export class TransactionServiceImpl implements TransactionServiceInterface {
   ) {}
 
   async create(transaction: DomainCreateTransactionDto): Promise<Transaction> {
+    console.log('create service', transaction)
     const created = await this.repository.create(transaction);
+    console.log('created -- service', created)
     await this.repository.sendCreated(created);
     return created;
   }

@@ -7,7 +7,7 @@ import {
 import { BaseExceptionFilter } from '@nestjs/core';
 import { HttpException, HttpStatus } from '@nestjs/common';
 
-@Catch() // Capture all exceptions
+@Catch()
 export class HttpExceptionFilter extends BaseExceptionFilter {
   catch(exception: any, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
@@ -20,7 +20,7 @@ export class HttpExceptionFilter extends BaseExceptionFilter {
     const code = 'HttpException';
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
 
-    console.log('status', status)
+    console.log('status Catch', status)
 
     switch (exception.constructor) {
       case HttpException:

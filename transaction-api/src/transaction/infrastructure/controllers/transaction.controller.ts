@@ -26,7 +26,9 @@ export class TransactionController extends BaseController {
 
   @Post()
   async create(@Body() dataC: CreateTransactionDto): Promise<TransactionDto> {
+    console.log('dataC', dataC)
     const data = await this.service.create(this.mapper.toDomainCreate(dataC));
+    console.log('data', data)
     return this.mapper.toDto(data);
   }
 

@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "5f5c4db4-03b5-4bc6-8ac4-300f275c716e",
+		"name": "yape",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33751179"
+	},
+	"item": [
+		{
+			"name": "transaction approved",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountExternalIdDebit\": \"550e8400-e29b-41d4-a716-446655440000\",\r\n    \"accountExternalIdCredit\": \"550e8400-e29b-41d4-a716-446655440000\",\r\n    \"tranferTypeId\": 1,\r\n    \"value\": 500\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5003/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5003",
+					"path": [
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transaction rejected",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountExternalIdDebit\": \"550e8400-e29b-41d4-a716-446655440000\",\r\n    \"accountExternalIdCredit\": \"550e8400-e29b-41d4-a716-446655440000\",\r\n    \"tranferTypeId\": 1,\r\n    \"value\": 500\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5003/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5003",
+					"path": [
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

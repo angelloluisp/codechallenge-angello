@@ -2,7 +2,7 @@ import { Catch, ArgumentsHost } from '@nestjs/common';
 import { BaseExceptionFilter } from '@nestjs/core';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { KafkaJSError } from 'kafkajs';
-@Catch() // Capture all exceptions
+@Catch()
 export class HttpExceptionFilter extends BaseExceptionFilter {
   catch(exception: any, host: ArgumentsHost) {
     const ctx = host.switchToHttp();

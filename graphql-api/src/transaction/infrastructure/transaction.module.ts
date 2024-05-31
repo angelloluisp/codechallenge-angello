@@ -1,4 +1,3 @@
-// Se ubica en infraestructura porque tiene intereacción con la base de datos
 import { Global, Module, Provider } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TransactionRepositoryImpl } from './repository_sql/transaction.repository';

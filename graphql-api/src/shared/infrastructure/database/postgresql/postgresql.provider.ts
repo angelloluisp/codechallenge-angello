@@ -11,7 +11,6 @@ export const PostgresProvider = TypeOrmModule.forRootAsync({
       username: configService.get('POSTGRES_USER'),
       password: configService.get('POSTGRES_PASSWORD'),
       database: configService.get('POSTGRES_DATABASE'),
-      // entities: [User],
       entities: ['dist/**/infrastructure/**/*.entity.js'],
       synchronize: false,
     };

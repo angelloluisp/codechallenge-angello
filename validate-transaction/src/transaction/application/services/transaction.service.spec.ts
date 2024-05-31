@@ -31,22 +31,19 @@ describe('TransactionServiceImpl', () => {
   });
 
   it('should send rejected message for invalid transaction', async () => {
-    // Arrange
     const invalidTransaction: Transaction = {
       id: 1,
       value: 1001,
-      accountExternalIdDebit: 'asd',
-      accountExternalIdCredit: 'asd',
+      accountExternalIdDebit: '5b766fd7-fd28-4e6d-9661-cdb07992c6e1',
+      accountExternalIdCredit: '5b766fd7-fd28-4e6d-9661-cdb07992c6e1',
       tranferTypeId: 1,
     };
     jest
       .spyOn(mockTransactionRepository, 'sendRejected')
       .mockReturnValueOnce(Promise.resolve(true));
 
-    // Act
     const result = await service.check(invalidTransaction);
 
-    // Assert
     expect(mockTransactionRepository.sendRejected).toHaveBeenCalledWith(
       invalidTransaction.id,
       expect.any(String),
@@ -55,22 +52,20 @@ describe('TransactionServiceImpl', () => {
   });
 
   it('should send approved message for valid transaction', async () => {
-    // Arrange
+
     const invalidTransaction: Transaction = {
       id: 1,
-      value: 500, // Valid value
-      accountExternalIdDebit: 'asd',
-      accountExternalIdCredit: 'asd',
+      value: 650,
+      accountExternalIdDebit: '5b766fd7-fd28-4e6d-9661-cdb07992c6e0',
+      accountExternalIdCredit: '5b766fd7-fd28-4e6d-9661-cdb07992c6e0',
       tranferTypeId: 1,
     };
     jest
       .spyOn(mockTransactionRepository, 'sendApproved')
       .mockReturnValueOnce(Promise.resolve(true));
 
-    // Act
     const result = await service.check(invalidTransaction);
 
-    // Assert
     expect(mockTransactionRepository.sendApproved).toHaveBeenCalledWith(
       invalidTransaction.id,
       expect.any(String),

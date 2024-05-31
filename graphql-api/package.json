@@ -1,6 +1,6 @@
 {
   "name": "graphql-api",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "Graphql server",
   "author": "Angello Pareja Sarmiento",
   "private": true,

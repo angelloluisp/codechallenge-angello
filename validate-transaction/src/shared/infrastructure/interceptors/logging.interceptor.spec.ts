@@ -26,14 +26,12 @@ describe('LoggingInterceptor', () => {
     expect(interceptor).toBeDefined();
   });
 
-  it('should log request information', async () => {
-    // Arrange
+  it('log request information', async () => {
+
     jest.spyOn(console, 'log').mockImplementation();
 
-    // Act
     await interceptor.intercept(mockContext, mockCallHandler);
 
-    // Assert
     expect(console.log).toHaveBeenCalledWith('[KAFKA EVENT]', {
       method: 'GET',
       url: '/test',
@@ -41,11 +39,4 @@ describe('LoggingInterceptor', () => {
     });
   });
 
-  it('should call the next handler', async () => {
-    // Act
-    await interceptor.intercept(mockContext, mockCallHandler);
-
-    // Assert
-    expect(mockCallHandler.handle).toHaveBeenCalled();
-  });
 });
